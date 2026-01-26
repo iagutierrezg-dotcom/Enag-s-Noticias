@@ -5,7 +5,7 @@ name: Noticias automáticas   # Nombre visible del workflow en GitHub
 
 on:
   schedule:
-      - cron: "0 6 * * *"   # Dispara la acción a las seis de la mañana (formato cron)
+      - cron: "14 * * *"   # Dispara la acción a las dos de la tarde (formato cron)
   workflow_dispatch:           # Permite ejecutarlo manualmente desde la interfaz de GitHub
 
 jobs:
