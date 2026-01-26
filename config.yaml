@@ -3,7 +3,11 @@ cnmv_nifs: "A-28294726"
 # Puedes poner una o varias entre comillas. 
 # Si no quieres filtro, deja las comillas vacías: ""
 keywords:
-  - " "
+  - "Arturo Gonzalo"
+  - "Antonio Llardén"
+  - "Enagás"
+  - "Día del Hidrógeno"
+  - "H2Med"
 
 # 🌍 Zona horaria (normalmente no se toca).
 # Si estás en España, deja "Europe/Madrid".
@@ -11,12 +15,13 @@ tzname: "Europe/Madrid"
 
 # ⏱️ Cuántas horas hacia atrás se buscan noticias recientes.
 # 24 significa "últimas 24 horas".
-hours_recent: 24
+hours_recent: 12
 
 # 📧 A qué correos se enviará el resumen.
 # Puedes añadir más poniendo cada uno en una línea nueva con "-".
 to_emails:
-  - "anartz2001@gmail.com"
+  - "iagutierrezg@gmail.com"
+  - "DGCRI.GCP.IAGG@enagas.es"
 
 # 🌐 Medios o páginas de donde se sacan las noticias.
 # Puedes añadir o quitar medios fácilmente copiando un bloque.
