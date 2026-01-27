@@ -1,4 +1,5 @@
-cnmv_nifs: - "A-28294726"
+cnmv_nifs: 
+  - "A-28294726"
 # 🗝️ Palabras clave para buscar en las noticias.
 # Puedes poner una o varias entre comillas. 
 # Si no quieres filtro, deja las comillas vacías: ""
