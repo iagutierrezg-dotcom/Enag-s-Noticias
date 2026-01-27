@@ -29,10 +29,14 @@ to_emails:
 # Puedes añadir o quitar medios fácilmente copiando un bloque.
 # Cada bloque necesita un nombre, una URL y el número máximo de artículos.
 sources:
-  - name: "20MINUTOS"
+   - name: "20MINUTOS"
     url: "https://www.20minutos.es/"
     max_to_fetch: 100
-  
+
+ - name: "EL_DEBATE"
+    url: "https://www.eldebate.com/"
+    max_to_fetch: 100
+
   - name: "ABC"
     url: "https://www.abc.es/"
     max_to_fetch: 100
@@ -189,6 +193,11 @@ sources:
   - name: "DIARIO_DE_SEVILLA_ANDALUCIA"
     url: "https://www.diariodesevilla.es/"
     max_to_fetch: 100
+
+  - name: "LA_INFORMACION"
+    url: "https://www.informacion.es/"
+    max_to_fetch: 100
+
   
   - name: "MALAGA_HOY_ANDALUCIA"
     url: "https://www.malagahoy.es/"
