@@ -511,27 +511,54 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
     target = tz.gettz(tzname)
     now = datetime.now(target).strftime("%Y-%m-%d %H:%M")
     blocks = []
+    
     for a in arts:
         p = a.get("published")
         p_h = dateparser.parse(p).strftime("%Y-%m-%d %H:%M") if p else "Sin fecha"
-        author_html = f'<div style="font-size:12px;color:#555;">{a.get("author")}</div>' if a.get("author") else ""
-        content_html = a.get("content","")
+        
+        # --- LÓGICA DE BREVEDAD ---
+        # Extraemos el contenido y lo limpiamos de espacios extra
+        full_content = (a.get("content", "") or "").strip()
+        
+        # Opción: Tomar solo el primer párrafo o los primeros 300 caracteres
+        resumen_corto = full_content.split('\n')[0] # Toma el primer párrafo
+        if len(resumen_corto) > 300:
+            resumen_corto = resumen_corto[:300] + "..."
+            
+        if not resumen_corto:
+            resumen_corto = "Haz clic en el enlace para leer la noticia completa."
+
+        # --- DISEÑO ESTÉTICO ---
         blocks.append(f"""
-        <article style="margin-bottom:24px;">
-          <div style="font-size:12px;color:#999">{a.get('source','')}</div>
-          <h3 style="margin:2px 0 2px 0;">{a['title']}</h3>
-          {author_html}
-          <div style="font-size:12px;color:#666;">{p_h} — <a href="{a['url']}">{a['url']}</a></div>
-          <p style="white-space:pre-wrap; line-height:1.45; margin-top:10px;">
-            {content_html}
+        <div style="margin-bottom: 28px; padding: 15px; border-left: 4px solid #004a99; background-color: #f9f9f9; border-radius: 0 5px 5px 0;">
+          <div style="font-size: 11px; font-weight: bold; color: #e62e00; text-transform: uppercase; margin-bottom: 5px;">
+            {a.get('source','?')}
+          </div>
+          <h3 style="margin: 0 0 8px 0; line-height: 1.3;">
+            <a href="{a['url']}" style="color: #004a99; text-decoration: none;">{a['title']}</a>
+          </h3>
+          <div style="font-size: 12px; color: #777; margin-bottom: 10px;">
+            {p_h} {f'— Por: {a.get("author")}' if a.get("author") else ""}
+          </div>
+          <p style="font-size: 14px; color: #333; line-height: 1.5; margin: 0;">
+            {resumen_corto}
           </p>
-        </article>""")
+          <div style="margin-top: 10px;">
+            <a href="{a['url']}" style="font-size: 12px; color: #004a99; font-weight: bold; text-decoration: underline;">Leer más &rarr;</a>
+          </div>
+        </div>""")
+
     return f"""<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><title>Noticias ( {now} )</title></head>
-<body style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; max-width:800px; margin:24px auto; padding:0 16px;">
-<h1 style="margin-bottom:8px;">Noticias de hoy</h1>
-<div style="color:#666; font-size:12px; margin-bottom:16px;">Generado {now} ({tzname})</div>
-{''.join(blocks) if blocks else '<p>No hay artículos en el rango actual.</p>'}
+<html lang="es">
+<head><meta charset="utf-8"></head>
+<body style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 700px; margin: 20px auto; color: #333;">
+    <div style="background-color: #004a99; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="color: white; margin: 0; font-size: 22px;">📊 Resumen Diario de Noticias</h1>
+        <p style="color: #d1d1d1; font-size: 12px; margin: 5px 0 0 0;">Generado el {now} ({tzname})</p>
+    </div>
+    <div style="padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
+        {''.join(blocks) if blocks else '<p style="text-align:center; color:#666;">No se han encontrado noticias relevantes con las palabras clave hoy.</p>'}
+    </div>
 </body></html>"""
 
 # ========= STATE =========
@@ -667,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
