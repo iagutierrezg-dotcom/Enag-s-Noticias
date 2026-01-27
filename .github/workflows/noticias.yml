@@ -22,5 +22,9 @@ jobs:
 
       - name: Ejecutar recolector
         env:
-          SMTP_PASS: ${{ secrets.SMTP_PASS }} # Carga la contraseña del correo desde los secretos de GitHub
-        run: python marca_harvester.py        # Ejecuta el script principal que recoge las noticias
+          # Estas líneas conectan los Secrets de GitHub con tu código Python
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}  # <--- ESTA ES LA QUE FALTA
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        run: python marca_harvester.py
