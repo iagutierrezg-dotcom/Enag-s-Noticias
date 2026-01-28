@@ -30,7 +30,7 @@ to_emails:
 # Puedes añadir o quitar medios fácilmente copiando un bloque.
 # Cada bloque necesita un nombre, una URL y el número máximo de artículos.
 sources:
-   - name: "20MINUTOS"
+ - name: "20MINUTOS"
     url: "https://www.20minutos.es/"
     max_to_fetch: 100
 
