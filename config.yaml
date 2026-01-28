@@ -31,16 +31,16 @@ to_emails:
 # Cada bloque necesita un nombre, una URL y el número máximo de artículos.
 sources:
  - name: "20MINUTOS"
-    url: "https://www.20minutos.es/"
-    max_to_fetch: 100
+   url: "https://www.20minutos.es/"
+   max_to_fetch: 100
 
  - name: "EL_DEBATE"
-    url: "https://www.eldebate.com/"
-    max_to_fetch: 100
+   url: "https://www.eldebate.com/"
+   max_to_fetch: 100
 
-  - name: "ABC"
-    url: "https://www.abc.es/"
-    max_to_fetch: 100
+ - name: "ABC"
+   url: "https://www.abc.es/"
+   max_to_fetch: 100
   
   - name: "BOLSAMANIA"
     url: "https://www.bolsamania.com/"
