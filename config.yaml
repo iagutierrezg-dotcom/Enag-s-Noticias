@@ -36,159 +36,120 @@ sources:
   - name: "ABC"
     url: "https://www.abc.es/"
     max_to_fetch: 100
-
- - name: "EL_DEBATE"
-   url: "https://www.eldebate.com/"
-   max_to_fetch: 100
-
- - name: "ABC"
-   url: "https://www.abc.es/"
-   max_to_fetch: 100
-  
- - name: "BOLSAMANIA"
-   url: "https://www.bolsamania.com/"
-   max_to_fetch: 100
-  
- - name: "CINCO_DIAS"
-   url: "https://cincodias.elpais.com/"
-   max_to_fetch: 100
-  
- - name: "COMPROMISORSE"
-   url: "https://www.compromisorse.com/"
-   max_to_fetch: 100
-  
-  - name: "CORRESPONSABLES"
-    url: "https://www.corresponsables.com/"
-    max_to_fetch: 100
-  
-  - name: "CRONICA_ECONOMICA"
-    url: "https://www.cronicaeconomica.com/"
-    max_to_fetch: 100
-  
-  - name: "CRONICA_GLOBAL"
-    url: "https://cronicaglobal.elespanol.com/"
-    max_to_fetch: 100
-  
-  - name: "DIARIO_SIGLO_XXI"
-    url: "https://www.diariosigloxxi.com/"
-    max_to_fetch: 100
-  
-  - name: "ECONOMIA_DIGITAL"
-    url: "https://www.economiadigital.es/"
-    max_to_fetch: 100
-  
-  - name: "EFE"
-    url: "https://www.efe.com/"
-    max_to_fetch: 100
-  
-  - name: "EJECUTIVOS"
-    url: "https://www.ejecutivos.es/"
-    max_to_fetch: 100
-  
-  - name: "EL_CONFIDENCIAL"
-    url: "https://www.elconfidencial.com/"
-    max_to_fetch: 100
-  
   - name: "EL_DEBATE"
     url: "https://www.eldebate.com/"
     max_to_fetch: 100
-  
+  - name: "ABC"
+    url: "https://www.abc.es/"
+    max_to_fetch: 100
+  - name: "BOLSAMANIA"
+    url: "https://www.bolsamania.com/"
+    max_to_fetch: 100
+  - name: "CINCO_DIAS"
+    url: "https://cincodias.elpais.com/"
+    max_to_fetch: 100
+  - name: "COMPROMISORSE"
+    url: "https://www.compromisorse.com/"
+    max_to_fetch: 100
+  - name: "CORRESPONSABLES"
+    url: "https://www.corresponsables.com/"
+    max_to_fetch: 100
+  - name: "CRONICA_ECONOMICA"
+    url: "https://www.cronicaeconomica.com/"
+    max_to_fetch: 100
+  - name: "CRONICA_GLOBAL"
+    url: "https://cronicaglobal.elespanol.com/"
+    max_to_fetch: 100
+  - name: "DIARIO_SIGLO_XXI"
+    url: "https://www.diariosigloxxi.com/"
+    max_to_fetch: 100
+  - name: "ECONOMIA_DIGITAL"
+    url: "https://www.economiadigital.es/"
+    max_to_fetch: 100
+  - name: "EFE"
+    url: "https://www.efe.com/"
+    max_to_fetch: 100
+  - name: "EJECUTIVOS"
+    url: "https://www.ejecutivos.es/"
+    max_to_fetch: 100
+  - name: "EL_CONFIDENCIAL"
+    url: "https://www.elconfidencial.com/"
+    max_to_fetch: 100
+  - name: "EL_DEBATE"
+    url: "https://www.eldebate.com/"
+    max_to_fetch: 100
   - name: "EL_DIARIO"
     url: "https://www.eldiario.es/"
     max_to_fetch: 100
-  
   - name: "EL_ECONOMISTA"
     url: "https://www.eleconomista.es/"
     max_to_fetch: 100
-  
   - name: "EL_PERIODICO_DE_LA_ENERGIA"
     url: "https://elperiodicodelaenergia.com/"
     max_to_fetch: 100
-  
   - name: "EL_PERIODICO"
     url: "https://www.elperiodico.com/"
     max_to_fetch: 100
-  
   - name: "EL_MUNDO"
     url: "https://www.elmundo.es/"
     max_to_fetch: 100
-  
   - name: "EL_PAIS"
     url: "https://elpais.com/"
     max_to_fetch: 100
-  
   - name: "EL_ESPANOL"
     url: "https://www.elespanol.com/"
     max_to_fetch: 100
-  
   - name: "EL_NACIONAL"
     url: "https://www.elnacional.cat/"
     max_to_fetch: 100
-  
   - name: "EPE"
     url: "https://www.epe.es/"
     max_to_fetch: 100
-  
   - name: "EUROPA_PRESS"
     url: "https://www.europapress.es/"
     max_to_fetch: 100
-  
   - name: "EXPANSION"
     url: "https://www.expansion.com/"
     max_to_fetch: 100
-  
   - name: "FINANZAS"
     url: "https://www.finanzas.com/"
     max_to_fetch: 100
-  
   - name: "FORBES"
     url: "https://forbes.es/"
     max_to_fetch: 100
-  
   - name: "HISPANIDAD"
     url: "https://www.hispanidad.com/"
     max_to_fetch: 100
-  
   - name: "LA_RAZON"
     url: "https://www.larazon.es/"
     max_to_fetch: 100
-  
   - name: "LA_VANGUARDIA"
     url: "https://www.lavanguardia.com/"
     max_to_fetch: 100
-  
   - name: "LIBERTAD_DIGITAL"
     url: "https://www.libertaddigital.com/"
     max_to_fetch: 100
-  
   - name: "MERCA2"
     url: "https://www.merca2.es/"
     max_to_fetch: 100
-  
   - name: "OKDIARIO"
     url: "https://www.okdiario.com/"
     max_to_fetch: 100
-  
   - name: "PUBLICO"
     url: "https://www.publico.es/"
     max_to_fetch: 100
-  
   - name: "REUTERS"
     url: "https://www.reuters.com/"
     max_to_fetch: 100
-  
   - name: "RTVE"
     url: "https://www.rtve.es/"
     max_to_fetch: 100
-  
   - name: "SERVIMEDIA"
     url: "https://www.servimedia.es/"
     max_to_fetch: 100
-  
   - name: "THE_OBJECTIVE"
     url: "https://theobjective.com/"
     max_to_fetch: 100
-  
   - name: "VOZPOPULI"
     url: "https://www.vozpopuli.com/"
     max_to_fetch: 100
