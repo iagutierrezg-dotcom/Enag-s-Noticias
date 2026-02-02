@@ -405,3 +405,8 @@ sources:
   - name: "EL_FARO_DE_MELILLA_MELILLA"
     url: "https://elfarodemelilla.es/"
     max_to_fetch: 150
+  
+  - name: "GOOGLE_NEWS_SEARCH"
+    url: "https://news.google.com/rss/search?q=enagas+OR+hidrogeno+OR+h2med+OR+%22Arturo+Gonzalo%22&hl=es&gl=ES&ceid=ES:es"
+    domain_prefix: "https://"
+    max_to_fetch: 100
