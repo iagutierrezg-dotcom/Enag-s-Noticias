@@ -6,7 +6,7 @@ name: Noticias automáticas   # Nombre visible del workflow en GitHub
 on:
   schedule:
     # 06:00 UTC es igual a las 07:00 AM en España (invierno)
-    - cron: '0 6 * * *' 
+    - cron: '0 5 * * *' 
   workflow_dispatch: # Esto permite que sigas probando el botón manual
 
 jobs:
