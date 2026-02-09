@@ -530,7 +530,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
 
         # --- DISEÑO ESTÉTICO ---
         blocks.append(f"""
-        <div style="margin-bottom: 28px; padding: 15px; border-left: 4px solid #004a99; background-color: #f9f9f9; border-radius: 0 5px 5px 0;">
+        <div style="margin-bottom: 28px; padding: 15px; border-left: 4px solid #004a99; background-color: #008d39; border-radius: 0 5px 5px 0;">
           <div style="font-size: 11px; font-weight: bold; color: #e62e00; text-transform: uppercase; margin-bottom: 5px;">
             {a.get('source','?')}
           </div>
@@ -553,7 +553,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
 <head><meta charset="utf-8"></head>
 <body style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 700px; margin: 20px auto; color: #333;">
     <div style="background-color: #004a99; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-        <h1 style="color: white; margin: 0; font-size: 22px;">📊 Resumen Diario de Noticias</h1>
+        <h1 style="color: white; margin: 0; font-size: 22px;">📊 Noticias de Enagás y el sector del H2</h1>
         <p style="color: #d1d1d1; font-size: 12px; margin: 5px 0 0 0;">Generado el {now} ({tzname})</p>
     </div>
     <div style="padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
@@ -576,7 +576,7 @@ def enviar_correo(html_content, subject):
     msg["From"] = SMTP_USER
     msg["To"] = ", ".join(TO_EMAILS)
     msg["Subject"] = subject
-    msg.set_content("Resumen diario en HTML.")
+    msg.set_content("Resumen diario")
     msg.add_alternative(html_content, subtype="html")
     with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=ssl.create_default_context()) as s:
         s.login(SMTP_USER, SMTP_PASS)
@@ -678,7 +678,7 @@ def main(keyword=None, tzname="Europe/Madrid"):
         if kw_list:
             filtro_vals = keyword if isinstance(keyword, (list, tuple, set)) else [keyword]
             filtro = f" — filtro: {', '.join(str(k) for k in filtro_vals if k)}"
-        asunto = f"Noticias de hoy ({datetime.now().strftime('%Y-%m-%d')}){filtro}"
+        asunto = f"Noticias sobre Enagás ({datetime.now().strftime('%Y-%m-%d')}){filtro}"
         enviar_correo(html, subject=asunto)
     else:
         log("No hay artículos ni posiciones cortas para enviar en el rango actual.")
@@ -694,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
