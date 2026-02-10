@@ -552,7 +552,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
 <html lang="es">
 <head><meta charset="utf-8"></head>
 <body style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 700px; margin: 20px auto; color: #333;">
-    <div style="background-color: #004a99; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+    <div style="background-color: #008d39; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
         <h1 style="color: white; margin: 0; font-size: 22px;">📊 Noticias de Enagás y el sector del H2</h1>
         <p style="color: #d1d1d1; font-size: 12px; margin: 5px 0 0 0;">Generado el {now} ({tzname})</p>
     </div>
@@ -694,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
