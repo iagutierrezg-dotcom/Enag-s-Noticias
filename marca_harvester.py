@@ -210,47 +210,41 @@ def get_cnmv_short_positions(nif: str, lang: str = None):
     }
 
 def build_html_cnmv(blocks):
-    """
-    blocks: lista de dicts devueltos por get_cnmv_short_positions
-    Devuelve un bloque HTML para incrustar en el email.
-    """
     if not blocks:
         return ""
 
     parts = []
-    parts.append('<hr style="margin:32px 0;">')
-    parts.append('<h2 style="margin-bottom:8px;">Posiciones cortas CNMV (≥ 0,5%)</h2>')
+    # Título de sección fuera de las tarjetas
+    parts.append('<h2 style="margin: 30px 0 15px 0; color: #333; font-size: 20px; border-bottom: 2px solid #008d39; display: inline-block;">Posiciones cortas CNMV (≥ 0,5%)</h2>')
+    
     for b in blocks:
         issuer = (b.get("issuer") or "").strip()
         title = f"{issuer} ({b['nif']})" if issuer else b["nif"]
-        parts.append(f'<h3 style="margin:16px 0 4px 0;">{title}</h3>')
-        parts.append(
-            f'<div style="font-size:12px;color:#666;margin-bottom:4px;">'
-            f'Fuente: <a href="{b["url"]}">{b["url"]}</a></div>'
-        )
+        
+        # Envolvemos cada empresa en una tarjeta blanca como las noticias
+        parts.append(f"""
+        <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #d1d1d1; background-color: #ffffff; border-radius: 8px;">
+            <h3 style="margin: 0 0 5px 0; color: #004a99;">{title}</h3>
+            <div style="font-size: 11px; color: #777; margin-bottom: 10px;">
+                Fuente: <a href="{b['url']}" style="color: #008d39;">CNMV</a>
+            </div>""")
 
         rows = b.get("rows") or []
         if not rows:
-            parts.append('<p style="font-size:13px;color:#666;">Sin posiciones vivas publicadas.</p>')
-            continue
-
-        parts.append(
-            '<table style="border-collapse:collapse;font-size:13px;margin-bottom:12px;">'
-            '<thead><tr>'
-            '<th style="border-bottom:1px solid #ccc;padding:4px 8px;text-align:left;">Titular</th>'
-            '<th style="border-bottom:1px solid #ccc;padding:4px 8px;text-align:right;">% capital</th>'
-            '<th style="border-bottom:1px solid #ccc;padding:4px 8px;text-align:left;">Fecha posición</th>'
-            '</tr></thead><tbody>'
-        )
-        for r in rows:
-            parts.append(
-                "<tr>"
-                f'<td style="padding:4px 8px;">{r["holder"]}</td>'
-                f'<td style="padding:4px 8px;text-align:right;">{r["net_short_pct"]:.3f}</td>'
-                f'<td style="padding:4px 8px;">{r["date"]}</td>'
-                "</tr>"
-            )
-        parts.append("</tbody></table>")
+            parts.append('<p style="font-size: 13px; color: #666;">Sin posiciones vivas publicadas.</p>')
+        else:
+            parts.append('<table style="width: 100%; border-collapse: collapse; font-size: 13px;">')
+            parts.append('<tr style="background-color: #f9f9f9;"><th style="text-align: left; padding: 5px;">Titular</th><th style="text-align: right; padding: 5px;">%</th><th style="text-align: right; padding: 5px;">Fecha</th></tr>')
+            for r in rows:
+                parts.append(f"""
+                <tr>
+                    <td style="padding: 5px; border-bottom: 1px solid #eee;">{r['holder']}</td>
+                    <td style="padding: 5px; border-bottom: 1px solid #eee; text-align: right; font-weight: bold;">{r['net_short_pct']:.2f}%</td>
+                    <td style="padding: 5px; border-bottom: 1px solid #eee; text-align: right;">{r['date']}</td>
+                </tr>""")
+            parts.append('</table>')
+        
+        parts.append('</div>') # Cierre de tarjeta
 
     return "\n".join(parts)
 
@@ -698,6 +692,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
