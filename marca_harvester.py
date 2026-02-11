@@ -530,7 +530,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
 
         # --- DISEÑO ESTÉTICO ---
         blocks.append(f"""
-        <div style="margin-bottom: 28px; padding: 15px; border-left: 4px solid #004a99; background-color: #008d39; border-radius: 0 5px 5px 0;">
+        <div style="margin-bottom: 28px; padding: 15px; border-left: 4px solid #004a99; background-color: #fff; border-radius: 0 5px 5px 0;">
           <div style="font-size: 11px; font-weight: bold; color: #e62e00; text-transform: uppercase; margin-bottom: 5px;">
             {a.get('source','?')}
           </div>
@@ -694,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
