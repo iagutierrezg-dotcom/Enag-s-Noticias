@@ -679,6 +679,8 @@ def main(keyword=None, tzname="Europe/Madrid"):
             filtro_vals = keyword if isinstance(keyword, (list, tuple, set)) else [keyword]
             filtro = f" — filtro: {', '.join(str(k) for k in filtro_vals if k)}"
         asunto = f"Noticias sobre Enagás ({datetime.now().strftime('%Y-%m-%d')}){filtro}"
+        fecha_hoy = datetime.now().strftime('%d/%m/%Y')
+        asunto = f"Resumen Diario de Noticias - {fecha_hoy}"
         enviar_correo(html, subject=asunto)
     else:
         log("No hay artículos ni posiciones cortas para enviar en el rango actual.")
