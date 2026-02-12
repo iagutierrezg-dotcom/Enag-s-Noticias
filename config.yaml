@@ -411,4 +411,4 @@ sources:
   - name: "GOOGLE_NEWS_SEARCH"
     url: "https://news.google.com/rss/search?q=enagas+OR+hidrogeno+OR+h2med+OR+%22Arturo+Gonzalo%22&hl=es&gl=ES&ceid=ES:es"
     domain_prefix: "https://"
-    max_to_fetch: 100
+    max_to_fetch: 150
