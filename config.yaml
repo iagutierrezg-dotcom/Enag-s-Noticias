@@ -13,6 +13,22 @@ keywords:
   - "H2Med"
   - "Enagas"
   - "Dia del hidrogeno"
+  - "PCPP"
+  - "Ana Palacio Vallelersundi"
+  - "José Montilla Aguilera"
+  - "Santiago Ferrer Costa"
+  - "Bartolomé Lora Toro"
+  - "Clara Belén García Fernández Muro"
+  - "Cristóbal Gallego Castillo"
+  - "David Sandalow"
+  - "José Blanco López"
+  - "Manuel Gabriel González Ramos"
+  - "María Teresa Arcos Sánchez"
+  - "María Teresa Costa Campi"
+  - "Patricia Úrbez Sanz"
+  - "Maria Elena Massot Puey"
+  - "Diego Trillo Ruiz"
+  - "Belen Barandiarán Odriozola"
 
 # 🌍 Zona horaria (normalmente no se toca).
 # Si estás en España, deja "Europe/Madrid".
@@ -33,6 +49,21 @@ to_emails:
 # Puedes añadir o quitar medios fácilmente copiando un bloque.
 # Cada bloque necesita un nombre, una URL y el número máximo de artículos.
 sources:
+  - name: "BLOOMBERG ECONOMÍA"
+    url: "https://www.bloomberg.com/economics/"
+    max_to_fetch: 150
+  - name: "BLOOMBERG GREEN"
+    url: "https://www.bloomberg.com/green/"
+    max_to_fetch: 150
+  - name: "POLÍTICO"
+    url: "https://www.politico.eu/"
+    max_to_fetch: 150
+  - name: "CONSENSO DEL MERCADO"
+    url: "https://consensodelmercado.com/"
+    max_to_fetch: 150
+  - name: "YAHOO NOTICIAS"
+    url: "https://es.finance.yahoo.com/noticias/"
+    max_to_fetch: 150
   - name: "ENERGIAS RENOVABLES"
     url: "https://www.energias-renovables.com/"
     max_to_fetch: 150
@@ -57,8 +88,8 @@ sources:
   - name: "ABC"
     url: "https://www.abc.es/"
     max_to_fetch: 150
-  - name: "BOLSAMANIA"
-    url: "https://www.bolsamania.com/"
+  - name: "OLSAMANIA"
+    url: "https://www.olsamania.com/"
     max_to_fetch: 150
   - name: "CINCO_DIAS"
     url: "https://cincodias.elpais.com/"
@@ -66,8 +97,8 @@ sources:
   - name: "COMPROMISORSE"
     url: "https://www.compromisorse.com/"
     max_to_fetch: 150
-  - name: "CORRESPONSABLES"
-    url: "https://www.corresponsables.com/"
+  - name: "CORRESPONSALES"
+    url: "https://www.corresponsales.com/"
     max_to_fetch: 150
   - name: "CRONICA_ECONOMICA"
     url: "https://www.cronicaeconomica.com/"
