@@ -506,9 +506,6 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
     now = datetime.now(target).strftime("%d/%m/%Y %H:%M")
     blocks = []
     
-    # 1. DEFINIMOS LA URL DEL LOGO AQUÍ
-    logo_url = "https://www.enagas.es/content/dam/enagas/es/comun/logo-enagas.png" 
-    
     for a in arts:
         p = a.get("published")
         p_h = dateparser.parse(p).strftime("%d/%m/%Y %H:%M") if p else "Sin fecha"
@@ -541,24 +538,23 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
           </div>
         </div>""")
 
-    # 2. INSERTAMOS EL LOGO EN LA CABECERA (Etiqueta <img>)
+    # ESTRUCTURA SIN LOGO
     return f"""<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"></head>
 <body style="font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
     <div style="max-width: 700px; margin: 0 auto;">
-        <div style="background-color: #008d39; padding: 30px 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <div style="background-color: rgba(255,255,255,0.9); display: inline-block; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-                <img src="{logo_url}" alt="Enagás" style="height: 45px; width: auto; display: block;">
-            </div>
-            <h1 style="color: #ffffff; margin: 0; font-size: 26px;">Resumen Diario de Noticias</h1>
-            <p style="color: #d1d1d1; font-size: 13px; margin: 10px 0 0 0;">Reporte automatizado • {now}</p>
+        <div style="background-color: #008d39; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">Resumen Diario de Noticias</h1>
+            <p style="color: #d1d1d1; font-size: 14px; margin: 10px 0 0 0; letter-spacing: 0.5px;">Reporte automatizado • {now}</p>
         </div>
-        <div style="background-color: #fdfdfd; padding: 20px; border: 1px solid #d1d1d1; border-top: none; border-radius: 0 0 8px 8px;">
-            {''.join(blocks) if blocks else '<p style="text-align:center; color:#666;">No se han encontrado noticias relevantes hoy.</p>'}
+        
+        <div style="background-color: #fdfdfd; padding: 25px; border: 1px solid #d1d1d1; border-top: none; border-radius: 0 0 8px 8px;">
+            {''.join(blocks) if blocks else '<p style="text-align:center; color:#666; padding: 20px;">No se han encontrado noticias relevantes hoy.</p>'}
         </div>
-        <div style="text-align: center; font-size: 11px; color: #999; margin-top: 20px;">
-            Este es un servicio automático de monitorización de prensa.
+        
+        <div style="text-align: center; font-size: 11px; color: #999; margin-top: 25px;">
+            Este es un servicio automático de monitorización de prensa para uso interno.
         </div>
     </div>
 </body></html>"""
@@ -698,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
