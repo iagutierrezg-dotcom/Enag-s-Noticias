@@ -545,7 +545,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
 <body style="font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
     <div style="max-width: 700px; margin: 0 auto;">
         <div style="background-color: #008d39; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">Resumen Diario de Noticias</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">Resumen de noticias - Enagás</h1>
             <p style="color: #d1d1d1; font-size: 14px; margin: 10px 0 0 0; letter-spacing: 0.5px;">Reporte automatizado • {now}</p>
         </div>
         
@@ -571,7 +571,7 @@ def enviar_correo(html_content, subject):
     if not SMTP_PASS:
         raise RuntimeError("SMTP_PASS no está definido (variable de entorno).")
     msg = EmailMessage()
-    msg["From"] = SMTP_USER
+    msg["From"] = f"Monitorización automática de prensa <{SMTP_USER}>"
     msg["To"] = ", ".join(TO_EMAILS)
     msg["Subject"] = subject
     msg.set_content("Resumen diario")
@@ -694,6 +694,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
