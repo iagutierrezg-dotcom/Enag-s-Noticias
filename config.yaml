@@ -88,8 +88,8 @@ sources:
   - name: "ABC"
     url: "https://www.abc.es/"
     max_to_fetch: 150
-  - name: "OLSAMANIA"
-    url: "https://www.olsamania.com/"
+  - name: "BOLSAMANIA"
+    url: "https://www.bolsamania.com/"
     max_to_fetch: 150
   - name: "CINCO_DIAS"
     url: "https://cincodias.elpais.com/"
