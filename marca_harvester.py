@@ -506,6 +506,9 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
     now = datetime.now(target).strftime("%d/%m/%Y %H:%M")
     blocks = []
     
+    # 1. DEFINIMOS LA URL DEL LOGO AQUÍ
+    logo_url = "https://www.enagas.es/content/dam/enagas/es/comun/logo-enagas.png" 
+    
     for a in arts:
         p = a.get("published")
         p_h = dateparser.parse(p).strftime("%d/%m/%Y %H:%M") if p else "Sin fecha"
@@ -518,7 +521,7 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
         if not resumen_corto:
             resumen_corto = "Haz clic en el enlace para leer la noticia completa."
 
-        # BLOQUE DE NOTICIA (Fondo blanco #ffffff, texto #333, bordes #d1d1d1)
+        # BLOQUE DE NOTICIA
         blocks.append(f"""
         <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #d1d1d1; background-color: #ffffff; border-radius: 8px;">
           <div style="font-size: 11px; font-weight: bold; color: #008d39; text-transform: uppercase; margin-bottom: 5px;">
@@ -538,13 +541,16 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
           </div>
         </div>""")
 
-    # ESTRUCTURA GLOBAL (Cabecera Verde #008d39, texto gris claro #d1d1d1)
+    # 2. INSERTAMOS EL LOGO EN LA CABECERA (Etiqueta <img>)
     return f"""<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"></head>
 <body style="font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
     <div style="max-width: 700px; margin: 0 auto;">
         <div style="background-color: #008d39; padding: 30px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+            <div style="background-color: rgba(255,255,255,0.9); display: inline-block; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                <img src="{logo_url}" alt="Enagás" style="height: 45px; width: auto; display: block;">
+            </div>
             <h1 style="color: #ffffff; margin: 0; font-size: 26px;">Resumen Diario de Noticias</h1>
             <p style="color: #d1d1d1; font-size: 13px; margin: 10px 0 0 0;">Reporte automatizado • {now}</p>
         </div>
@@ -692,6 +698,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
