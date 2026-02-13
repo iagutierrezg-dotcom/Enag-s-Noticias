@@ -518,43 +518,58 @@ def build_html_multi(arts, tzname="Europe/Madrid"):
         if not resumen_corto:
             resumen_corto = "Haz clic en el enlace para leer la noticia completa."
 
+        # --- LÓGICA DE TAGS (PALABRAS CLAVE) ---
+        kw_tags_html = ""
+        matched = a.get("matched_keywords", [])
+        if matched:
+            # Creamos las etiquetas visuales
+            tags = "".join([
+                f'<span style="background-color: #f0f0f0; color: #008d39; padding: 3px 8px; border-radius: 4px; '
+                f'margin-right: 6px; font-size: 11px; font-weight: bold; border: 1px solid #e0e0e0; '
+                f'display: inline-block; margin-bottom: 5px;">#{k.upper()}</span>' 
+                for k in matched
+            ])
+            kw_tags_html = f'<div style="margin-top: 12px; margin-bottom: 5px;">{tags}</div>'
+
         # BLOQUE DE NOTICIA
         blocks.append(f"""
-        <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #d1d1d1; background-color: #ffffff; border-radius: 8px;">
-          <div style="font-size: 11px; font-weight: bold; color: #008d39; text-transform: uppercase; margin-bottom: 5px;">
+        <div style="margin-bottom: 25px; padding: 20px; border: 1px solid #d1d1d1; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-size: 11px; font-weight: bold; color: #666; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">
             {a.get('source','?')}
           </div>
-          <h3 style="margin: 0 0 8px 0; line-height: 1.3;">
+          <h3 style="margin: 0 0 10px 0; line-height: 1.4; font-size: 18px;">
             <a href="{a['url']}" style="color: #004a99; text-decoration: none;">{a['title']}</a>
           </h3>
-          <div style="font-size: 12px; color: #777; margin-bottom: 10px;">
-            {p_h} {f'— Por: {a.get("author")}' if a.get("author") else ""}
+          <div style="font-size: 12px; color: #888; margin-bottom: 12px;">
+            📅 {p_h} {f' | ✍️ {a.get("author")}' if a.get("author") else ""}
           </div>
-          <p style="font-size: 14px; color: #333; line-height: 1.5; margin: 0;">
+          <p style="font-size: 14px; color: #333; line-height: 1.6; margin: 0;">
             {resumen_corto}
           </p>
-          <div style="margin-top: 10px;">
-            <a href="{a['url']}" style="font-size: 12px; color: #008d39; font-weight: bold; text-decoration: none;">Leer noticia completa &rarr;</a>
+          
+          {kw_tags_html}  <div style="margin-top: 15px; border-top: 1px solid #f0f0f0; padding-top: 12px;">
+            <a href="{a['url']}" style="font-size: 13px; color: #008d39; font-weight: bold; text-decoration: none;">Seguir leyendo &rarr;</a>
           </div>
         </div>""")
 
-    # ESTRUCTURA SIN LOGO
+    # ESTRUCTURA GLOBAL SIN LOGO
     return f"""<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"></head>
-<body style="font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; padding: 20px; color: #333;">
+<body style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #f4f4f4; padding: 20px; margin: 0; color: #333;">
     <div style="max-width: 700px; margin: 0 auto;">
         <div style="background-color: #008d39; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">Resumen de noticias - Enagás</h1>
-            <p style="color: #d1d1d1; font-size: 14px; margin: 10px 0 0 0; letter-spacing: 0.5px;">Reporte automatizado • {now}</p>
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">Resumen Diario de Noticias</h1>
+            <p style="color: #d1d1d1; font-size: 14px; margin: 10px 0 0 0; letter-spacing: 0.5px;">SISTEMA DE INTELIGENCIA • {now}</p>
         </div>
         
         <div style="background-color: #fdfdfd; padding: 25px; border: 1px solid #d1d1d1; border-top: none; border-radius: 0 0 8px 8px;">
-            {''.join(blocks) if blocks else '<p style="text-align:center; color:#666; padding: 20px;">No se han encontrado noticias relevantes hoy.</p>'}
+            {''.join(blocks) if blocks else '<p style="text-align:center; color:#666; padding: 40px;">No se han encontrado noticias con los criterios de búsqueda para hoy.</p>'}
         </div>
         
-        <div style="text-align: center; font-size: 11px; color: #999; margin-top: 25px;">
-            Este es un servicio automático de monitorización de prensa para uso interno.
+        <div style="text-align: center; font-size: 11px; color: #999; margin-top: 25px; line-height: 1.5;">
+            Este reporte ha sido generado automáticamente para uso interno.<br>
+            © {datetime.now().year} Monitorización Energética.
         </div>
     </div>
 </body></html>"""
@@ -631,10 +646,12 @@ def main(keyword=None, tzname="Europe/Madrid"):
             continue
 
         # si hay keywords, deben aparecer en título o cuerpo
-        if kw_list:
-            fulltxt = norm((art.get("title") or "") + " " + (art.get("content") or ""))
-            if not any(k in fulltxt for k in kw_list):
-                continue
+       if kw_list:
+    fulltxt = norm((art.get("title") or "") + " " + (art.get("content") or ""))
+    matched = [k for k in kw_list if k in fulltxt] # <--- Detecta cuáles coinciden
+    if not matched:
+        continue
+    art["matched_keywords"] = matched # <--- Lo guarda en la noticia
 
         # exigir fecha y limitar por ventana reciente
         if not art.get("published") or not is_recent(art.get("published"), tzname=tzname):
@@ -694,6 +711,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
