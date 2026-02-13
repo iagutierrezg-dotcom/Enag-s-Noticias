@@ -36,7 +36,7 @@ tzname: "Europe/Madrid"
 
 # ⏱️ Cuántas horas hacia atrás se buscan noticias recientes.
 # 24 significa "últimas 24 horas".
-hours_recent: 24
+hours_recent: 15
 
 # 📧 A qué correos se enviará el resumen.
 # Puedes añadir más poniendo cada uno en una línea nueva con "-".
