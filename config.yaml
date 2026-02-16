@@ -50,6 +50,9 @@ to_emails:
 # Puedes añadir o quitar medios fácilmente copiando un bloque.
 # Cada bloque necesita un nombre, una URL y el número máximo de artículos.
 sources:
+  - name: "MURCIA ECONOMÍA"
+    url: "https://murciaeconomia.com/"
+    max_to_fetch: 150
   - name: "BLOOMBERG ECONOMÍA"
     url: "https://www.bloomberg.com/economics/"
     max_to_fetch: 150
