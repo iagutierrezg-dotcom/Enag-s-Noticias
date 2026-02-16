@@ -631,7 +631,6 @@ def main(keyword=None, tzname="Europe/Madrid"):
             print(f"Prefiltro por {kw_list} NO aplicado ({len(pre)} candidatos). Buscaré en el cuerpo de {before} URLs.")
 
     collected = []
-   collected = []
     for i, item in enumerate(listing, 1):
         url = item["url"]
 
@@ -713,6 +712,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
