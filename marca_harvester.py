@@ -631,6 +631,7 @@ def main(keyword=None, tzname="Europe/Madrid"):
             print(f"Prefiltro por {kw_list} NO aplicado ({len(pre)} candidatos). Buscaré en el cuerpo de {before} URLs.")
 
     collected = []
+   collected = []
     for i, item in enumerate(listing, 1):
         url = item["url"]
 
@@ -645,13 +646,14 @@ def main(keyword=None, tzname="Europe/Madrid"):
             log(f"Error extrayendo {url}: {e}")
             continue
 
-        # si hay keywords, deben aparecer en título o cuerpo
-       if kw_list:
-    fulltxt = norm((art.get("title") or "") + " " + (art.get("content") or ""))
-    matched = [k for k in kw_list if k in fulltxt] # <--- Detecta cuáles coinciden
-    if not matched:
-        continue
-    art["matched_keywords"] = matched # <--- Lo guarda en la noticia
+        # --- BLOQUE CORREGIDO ---
+        if kw_list:
+            fulltxt = norm((art.get("title") or "") + " " + (art.get("content") or ""))
+            matched = [k for k in kw_list if k in fulltxt]
+            if not matched:
+                continue
+            # Guardamos las palabras clave encontradas para que build_html_multi las pinte
+            art["matched_keywords"] = matched 
 
         # exigir fecha y limitar por ventana reciente
         if not art.get("published") or not is_recent(art.get("published"), tzname=tzname):
@@ -661,7 +663,7 @@ def main(keyword=None, tzname="Europe/Madrid"):
         collected.append(art)
         seen.add(url)
         log(f"[{i}/{len(listing)}] OK [{art['source']}]: {art.get('title','')[:80]}")
-
+    #
     save_state(seen)
 
     # HTML principal de noticias
@@ -711,6 +713,7 @@ if __name__ == "__main__":
     if kw_env and not kws:
         kws = [k.strip() for k in kw_env.split("|") if k.strip()]
     main(keyword=kws, tzname=tzname)
+
 
 
 
